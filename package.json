@@ -1,0 +1,12 @@
+{
+  "name": "@wheredidhugo/init-project",
+  "version": "1.0.0",
+  "description": "⚙️ Makes a project using my settings.",
+  "author": "Hugo <wheredidhugo@protonmail.com>",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "start": "node .",
+    "postinstall": "node shell.js"
+  }
+}
