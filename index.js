@@ -35,3 +35,5 @@ rl.question("Do you need a .env file? (y/n) ", (answer) => {
 fs.writeFile(path.join(process.cwd() + `/LICENSE`), MIT, (err) => {
   if (err) return err;
 });
+
+console.log("Initialized your project!")
