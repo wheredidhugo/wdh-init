@@ -26,6 +26,7 @@ rl.question("Do you need a .env file? (y/n) ", (answer) => {
     fs.writeFile(path.join(process.cwd() + `/index.js`), indexENV, (err) => {
       if (err) return err;
     });
+    exec("touch .env")
   } else if (answer === "n") {
     exec("touch index.js");
   }
