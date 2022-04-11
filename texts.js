@@ -1,24 +1,24 @@
-const path = require("path");
+import path from "path";
 
 var year = new Date().getFullYear();
 
-var gitignore = `# Node.js
+export var gitignore = `# Node.js
 node_modules
 package-lock.json
 # Mac
 .DS_Store
 `;
 
-var README = `# ${path.basename(process.cwd())}
+export var README = `# ${path.basename(process.cwd())}
 Description of the project
 `;
 
-var indexENV = `require("dotenv").config();
+export var indexENV = `require("dotenv").config();
 
 console.log(process.env);
 `;
 
-var MIT = `MIT License
+export var MIT = `MIT License
 
 Copyright (c) ${year} Hugo <wheredidhugo@protonmail.com>
 
@@ -41,7 +41,18 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 `;
 
-exports.gitignore = gitignore;
-exports.README = README;
-exports.indexENV = indexENV;
-exports.MIT = MIT;
+export var meowVariable = `
+Usage
+    $ wdh-init
+
+Options
+    --help, -h      Shows this menu.
+    --env, -e       Doesn't prompt for env and automatically creates one.
+    --yes, -y       Automatically accept warning.
+
+Examples
+    $ wdh-init
+    $ wdh-init --help, -h
+    $ wdh-init --env, -e
+    $ wdh-init --yes, -y
+`

@@ -1,40 +1,85 @@
-const exec = require("child_process").exec,
-  path = require("path"),
-  fs = require("fs"),
-  readline = require("readline"),
-  { gitignore, README, indexENV, MIT } = require("./texts.js");
+#!/usr/bin/env node
 
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
+// Node.js modules
+import { exec } from "child_process";
+import path from "path";
+import fs from "fs";
+
+// Variables
+import { gitignore, README, indexENV, MIT, meowVariable } from "./texts.js";
+
+// Styling modules
+import chalk from "chalk";
+import inquirer from "inquirer";
+import { createSpinner } from "nanospinner";
+
+// CLI
+import meow from "meow";
+const cli = meow(meowVariable, {
+  importMeta: import.meta,
+  flags: {
+    help: {
+      alias: "h",
+    },
+    env: {
+      type: "boolean",
+      alias: "e",
+    },
+    yes: {
+      type: "boolean",
+      alias: "y",
+    },
+  },
 });
+
+function write(file, data) {
+  fs.writeFile(path.join(process.cwd() + `/${file}`), data, (err) => {
+    if (err) return err;
+  });
+}
+
+if (!cli.flags.yes) {
+  await inquirer.prompt({
+      name: "danger",
+      type: "confirm",
+      message:
+        "WARNING: This tool will remove important files if your directory isn't empty. Are you sure to proceed?",
+      default: false,
+    })
+    .then((answer) => {
+      if (!answer.danger) process.exit(1);
+    });
+}
+
+if (cli.flags.env) {
+  exec("npm install dotenv");
+  write("index.js", indexENV);
+  exec("touch .env");
+} else {
+  await inquirer.prompt({
+      name: "env",
+      type: "confirm",
+      message: "Do you need an env file?",
+      default: false,
+    })
+    .then((answer) => {
+      if (answer.env) {
+        exec("npm install dotenv");
+        write("index.js", indexENV);
+        exec("touch .env");
+      } else {
+        exec("touch index.js");
+      }
+    });
+}
 
 exec("git init");
 exec("npm init -y");
 
-fs.writeFile(path.join(process.cwd() + `/.gitignore`), gitignore, (err) => {
-  if (err) return err;
-});
+write(".gitignore", gitignore);
+write("README.md", README);
+write("LICENSE", MIT);
 
-fs.writeFile(path.join(process.cwd() + `/README.md`), README, (err) => {
-  if (err) return err;
-});
-
-rl.question("Do you need a .env file? (y/n) ", (answer) => {
-  if (answer === "y") {
-    exec("npm install dotenv");
-    fs.writeFile(path.join(process.cwd() + `/index.js`), indexENV, (err) => {
-      if (err) return err;
-    });
-    exec("touch .env")
-  } else if (answer === "n") {
-    exec("touch index.js");
-  }
-  rl.close();
-});
-
-fs.writeFile(path.join(process.cwd() + `/LICENSE`), MIT, (err) => {
-  if (err) return err;
-});
-
-console.log("Initialized your project!")
+createSpinner()
+  .start()
+  .success({text: chalk.cyanBright("Successfully initialized your project!")});

@@ -1,12 +1,29 @@
 {
-  "name": "@wheredidhugo/init-project",
+  "name": "wdh-init",
   "version": "1.0.0",
-  "description": "⚙️ Makes a project using my settings.",
+  "description": "⚙️ Initializes a project using my settings.",
   "author": "Hugo <wheredidhugo@protonmail.com>",
   "license": "MIT",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "start": "node .",
-    "postinstall": "node shell.js"
+    "start": "node ."
+  },
+  "dependencies": {
+    "chalk": "^5.0.1",
+    "inquirer": "^8.2.2",
+    "meow": "^10.1.2",
+    "nanospinner": "^1.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wheredidhugo/wdh-init.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wheredidhugo/wdh-init/issues"
+  },
+  "homepage": "https://github.com/wheredidhugo/wdh-init",
+  "bin": {
+    "wdh-init": "./index.js"
   }
 }
