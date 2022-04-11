@@ -6,7 +6,7 @@ import path from "path";
 import fs from "fs";
 
 // Variables
-import { gitignore, README, indexENV, MIT, meowVariable } from "./texts.js";
+import { gitignore, gitignoreENV, README, indexENV, MIT, meowVariable } from "./texts.js";
 
 // Styling modules
 import chalk from "chalk";
@@ -38,6 +38,26 @@ function write(file, data) {
   });
 }
 
+function append(file, data) {
+  fs.appendFile(path.join(process.cwd() + `/${file}`), data, (err) => {
+    if (err) return err;
+  });
+}
+
+exec("git init");
+exec("npm init -y");
+
+write("README.md", README);
+write("LICENSE", MIT);
+write(".gitignore", gitignore);
+
+function env() {
+  exec("npm install dotenv");
+  write("index.js", indexENV);
+  exec("touch .env");
+  append(".gitignore", gitignoreENV);
+}
+
 if (!cli.flags.yes) {
   await inquirer.prompt({
       name: "danger",
@@ -52,9 +72,7 @@ if (!cli.flags.yes) {
 }
 
 if (cli.flags.env) {
-  exec("npm install dotenv");
-  write("index.js", indexENV);
-  exec("touch .env");
+  env();
 } else {
   await inquirer.prompt({
       name: "env",
@@ -64,21 +82,12 @@ if (cli.flags.env) {
     })
     .then((answer) => {
       if (answer.env) {
-        exec("npm install dotenv");
-        write("index.js", indexENV);
-        exec("touch .env");
+        env();
       } else {
         exec("touch index.js");
       }
     });
 }
-
-exec("git init");
-exec("npm init -y");
-
-write(".gitignore", gitignore);
-write("README.md", README);
-write("LICENSE", MIT);
 
 createSpinner()
   .start()

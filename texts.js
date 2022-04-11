@@ -9,6 +9,11 @@ package-lock.json
 .DS_Store
 `;
 
+export var gitignoreENV = `# Environnement variables
+.env
+.env.local
+`;
+
 export var README = `# ${path.basename(process.cwd())}
 Description of the project
 `;
