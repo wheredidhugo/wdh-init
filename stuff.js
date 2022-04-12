@@ -1,4 +1,5 @@
 import path from "path";
+import fs from "fs";
 
 var year = new Date().getFullYear();
 
@@ -53,11 +54,25 @@ Usage
 Options
     --help, -h      Shows this menu.
     --env, -e       Doesn't prompt for env and automatically creates one.
-    --yes, -y       Automatically accept warning.
+    --yes, -y       Automatically accept warning, and launch VSCode after initialization.
+    --code, -c      Launch VSCode after initialization.
 
 Examples
     $ wdh-init
     $ wdh-init --help, -h
     $ wdh-init --env, -e
     $ wdh-init --yes, -y
-`
+    $ wdh-init --code, -c
+`;
+
+export function write(file, data) {
+  fs.writeFile(path.join(process.cwd() + `/${file}`), data, (err) => {
+    if (err) return err;
+  });
+}
+
+export function append(file, data) {
+  fs.appendFile(path.join(process.cwd() + `/${file}`), data, (err) => {
+    if (err) return err;
+  });
+}
