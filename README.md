@@ -9,10 +9,19 @@
 
 # Usage and options
 
-##### Normal
+## Usage
 
 ```bash
 > wdh-init
+```
+
+## Options
+
+```
+--help, -h      Shows this menu.
+--env, -e       Doesn't prompt for env and automatically creates one.
+--yes, -y       Automatically accept warning, and launch VSCode after initialization.
+--code, -c      Launch VSCode after initialization.
 ```
 
 ##### Shows help command
@@ -31,4 +40,10 @@
 
 ```bash
 > wdh-init --yes, -y
+```
+
+##### VSCode
+
+```bash
+> wdh-init --code, -c
 ```
