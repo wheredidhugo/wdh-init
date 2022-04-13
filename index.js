@@ -43,7 +43,7 @@ if (cli.flags.yes || cli.flags.code) {
   vscode = true;
 }
 
-if (!cli.flags.yes || !cli.flags.warning) {
+if (!(cli.flags.yes || cli.flags.warning)) {
   await inquirer.prompt({
     name: "danger",
     type: "confirm",
@@ -63,7 +63,7 @@ write("README.md", README);
 write("LICENSE", MIT);
 write(".gitignore", gitignore);
 
-if (!cli.flags.code || !cli.flags.yes) {
+if (!(cli.flags.code || cli.flags.yes)) {
   await inquirer.prompt({
     name: "code",
     type: "confirm",
