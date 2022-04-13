@@ -27,6 +27,10 @@ const cli = meow(meowVariable, {
       type: "boolean",
       alias: "y"
     },
+    warning: {
+      type: "boolean",
+      alias: "w"
+    },
     code: {
       type: "boolean",
       alias: "c"
@@ -39,7 +43,7 @@ if (cli.flags.yes || cli.flags.code) {
   vscode = true;
 }
 
-if (!cli.flags.yes) {
+if (!cli.flags.yes || !cli.flags.warning) {
   await inquirer.prompt({
     name: "danger",
     type: "confirm",
@@ -50,17 +54,6 @@ if (!cli.flags.yes) {
   .then((answer) => {
     if (!answer.danger) process.exit(1);
   });
-  if (!cli.flags.code) {
-    await inquirer.prompt({
-      name: "code",
-      type: "confirm",
-      message: "Launch VSCode after initialization?",
-      default: true,
-    })
-    .then((answer) => {
-      if (answer.code) vscode = true;
-    });
-  }
 }
 
 exec("git init");
@@ -69,6 +62,18 @@ exec("npm init -y");
 write("README.md", README);
 write("LICENSE", MIT);
 write(".gitignore", gitignore);
+
+if (!cli.flags.code) {
+  await inquirer.prompt({
+    name: "code",
+    type: "confirm",
+    message: "Launch VSCode after initialization?",
+    default: true,
+  })
+  .then((answer) => {
+    if (answer.code) vscode = true;
+  });
+}
 
 function env() {
   exec("npm install dotenv");

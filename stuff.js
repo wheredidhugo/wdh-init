@@ -49,20 +49,25 @@ SOFTWARE.
 
 export var meowVariable = `
 Usage
-    $ wdh-init
+  $ wdh-init
 
 Options
-    --help, -h      Shows this menu.
-    --env, -e       Doesn't prompt for env and automatically creates one.
-    --yes, -y       Automatically accept warning, and launch VSCode after initialization.
-    --code, -c      Launch VSCode after initialization.
+  --help, -h      Shows this menu.
+  --env, -e       Doesn't prompt for env and automatically creates one.
+  --yes, -y       Automatically accept warning, and launch VSCode after initialization.
+  --warning, -w   Automatically accept warning.
+  --code, -c      Launch VSCode after initialization.
 
-Examples
-    $ wdh-init
-    $ wdh-init --help, -h
-    $ wdh-init --env, -e
-    $ wdh-init --yes, -y
-    $ wdh-init --code, -c
+Example
+  $ wdh-init
+    ? WARNING: This tool will remove important files if your directory isn't empty.
+    Are you sure to proceed? Yes
+    ? Launch VSCode after initialization? No
+    ? Do you need an env file? No
+    ✔ Successfully initialized your project!
+  $ wdh-init -y
+    ? Do you need an env file? No
+    ✔ Successfully initialized your project!
 `;
 
 export function write(file, data) {
