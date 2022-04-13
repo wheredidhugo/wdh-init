@@ -1,7 +1,7 @@
 # wdh-init
 ⚙️ Initializes a project using my settings.
 
-# Install
+# Installation
 
 ```bash
 > npm i -g wdh-init
@@ -21,29 +21,10 @@
 --help, -h      Shows this menu.
 --env, -e       Doesn't prompt for env and automatically creates one.
 --yes, -y       Automatically accept warning, and launch VSCode after initialization.
+--warning, -w   Automatically accept warning.
 --code, -c      Launch VSCode after initialization.
 ```
 
-##### Shows help command
+# Example
 
-```bash
-> wdh-init --help, -h
-```
-
-##### Auto accepts .env prompt
-
-```bash
-> wdh-init --env, -e
-```
-
-##### Ignores warning
-
-```bash
-> wdh-init --yes, -y
-```
-
-##### VSCode
-
-```bash
-> wdh-init --code, -c
-```
+![Example screenshot](https://github.com/wheredidhugo/wdh-init/README-screenshot.png)
