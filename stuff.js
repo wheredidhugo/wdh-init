@@ -26,7 +26,7 @@ console.log(process.env);
 
 export var MIT = `MIT License
 
-Copyright (c) ${year} Hugo <wheredidhugo@protonmail.com>
+Copyright (c) ${year} Hugo <wheredidhugo@proton.me>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

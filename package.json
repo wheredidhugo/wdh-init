@@ -2,7 +2,7 @@
   "name": "wdh-init",
   "version": "1.1.1",
   "description": "⚙️ Initializes a project using my settings.",
-  "author": "Hugo <wheredidhugo@protonmail.com>",
+  "author": "Hugo <wheredidhugo@proton.me>",
   "license": "MIT",
   "main": "index.js",
   "type": "module",
