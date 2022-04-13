@@ -63,7 +63,7 @@ write("README.md", README);
 write("LICENSE", MIT);
 write(".gitignore", gitignore);
 
-if (!cli.flags.code) {
+if (!cli.flags.code || !cli.flags.yes) {
   await inquirer.prompt({
     name: "code",
     type: "confirm",
