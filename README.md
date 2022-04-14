@@ -27,4 +27,4 @@
 
 # Example
 
-![Example screenshot](https://github.com/wheredidhugo/wdh-init/README-screenshot.png)
+![Example screenshot](https://raw.githubusercontent.com/wheredidhugo/wdh-init/main/README-screenshot.png)
