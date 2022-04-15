@@ -84,6 +84,9 @@ function env() {
 
 if (cli.flags.env) {
   env();
+  console.log(chalk.green("✔") + chalk.white(" .env file created."));
+} else if (cli.flags.yes && !cli.flags.env) {
+  console.log(chalk.yellowBright("⚠") + chalk.bold.white(" Not creating an env file."));
 } else {
   await inquirer.prompt({
     name: "env",
@@ -101,10 +104,9 @@ if (cli.flags.env) {
 }
 
 if (vscode) {
-  const spinner = createSpinner("Launching VSCode...").start();
+  const vsSpinner = createSpinner(chalk.white("Launching VSCode...")).start();
   execSync("code .");
-  spinner.success({text: chalk.cyanBright("Launched VSCode")});
+  vsSpinner.success({text: chalk.white("Launched VSCode.")});
 }
 
-createSpinner()
-  .start().success({text: chalk.cyanBright("Successfully initialized your project!")});
+console.log(chalk.green("✔") + chalk.cyanBright(" Successfully initialized your project!"));
