@@ -54,7 +54,7 @@ Usage
 Options
   --help, -h      Shows this menu.
   --env, -e       Doesn't prompt for env and automatically creates one.
-  --yes, -y       Automatically accept warning, and launch VSCode after initialization.
+  --yes, -y       Automatically accept warning, launch VSCode after initialization (but doesn't create an env file).
   --warning, -w   Automatically accept warning.
   --code, -c      Launch VSCode after initialization.
 
@@ -66,7 +66,12 @@ Example
     ? Do you need an env file? No
     ✔ Successfully initialized your project!
   $ wdh-init -y
-    ? Do you need an env file? No
+    ⚠ Not creating an env file.
+    ✔ Launched VSCode.
+    ✔ Successfully initialized your project!
+  $ wdh-init -y -e
+    ✔ .env file created.
+    ✔ Launched VSCode.
     ✔ Successfully initialized your project!
 `;
 
