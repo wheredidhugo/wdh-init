@@ -101,7 +101,9 @@ if (cli.flags.env) {
 }
 
 if (vscode) {
+  const spinner = createSpinner("Launching VSCode...").start();
   execSync("code .");
+  spinner.success({text: chalk.cyanBright("Launched VSCode")});
 }
 
 createSpinner()
